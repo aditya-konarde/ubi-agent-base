@@ -9,10 +9,16 @@ ssh exe.dev new --image=ghcr.io/aditya-konarde/ubi-agent-base:latest
 Use the hostname returned by exe.dev:
 
 ```sh
-ssh -t YOUR-MACHINE.exe.xyz herdr
+ssh YOUR-MACHINE.exe.xyz
 ```
 
-Herdr starts its persistent local server when launched. It is installed as a tool, not started as a system service. Agent CLIs and API credentials are configured separately; no credentials are included in the image.
+Interactive SSH logins open Herdr automatically. Remote commands and file transfers do not launch it, and shells inside Herdr do not launch another copy. To bypass auto-start for one connection:
+
+```sh
+ssh -t YOUR-MACHINE.exe.xyz 'HERDR_AUTO_START=0 bash -l'
+```
+
+Set `export HERDR_AUTO_START=0` before the Herdr source line in `~/.bashrc` to disable it permanently. Herdr starts its persistent local server when launched. It is installed as a tool, not started as a system service. Agent CLIs and API credentials are configured separately; no credentials are included in the image.
 
 ## Included
 
@@ -33,7 +39,7 @@ podman run --rm --user exedev --entrypoint bash \
 
 Docker works with the same commands by replacing `podman` with `docker`.
 
-The workflow builds Linux amd64, tests a real Herdr shell command and a Python 3.12 virtual environment, then publishes `latest` and an unique commit-and-run tag on main. Pull requests build and test without publishing. Weekly rebuilds refresh the UBI base and RPM packages; Herdr, uv and ripgrep remain pinned until explicitly updated. `herdr-release.json` records official release URLs and SHA256 checksums. ARM64 is not covered by CI.
+The workflow builds Linux amd64, tests a real Herdr shell command and a Python 3.12 virtual environment, then publishes `latest` and a unique commit-and-run tag on main. Pull requests build and test without publishing. Weekly rebuilds refresh the UBI base and RPM packages; Herdr, uv and ripgrep remain pinned until explicitly updated. `herdr-release.json` records official release URLs and SHA256 checksums. ARM64 is not covered by CI.
 
 ## Operational notes
 

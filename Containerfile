@@ -49,6 +49,9 @@ RUN groupadd -g 1000 exedev && useradd -m -u 1000 -g exedev -s /bin/bash exedev 
     printf '[Journal]\nStorage=persistent\nSystemMaxUse=64M\n' > /etc/systemd/journald.conf.d/limits.conf && \
     printf '/dev/vda / ext4 defaults,x-systemd.growfs 0 1\n' > /etc/fstab
 
+COPY herdr-ssh.sh /etc/herdr-ssh.sh
+RUN printf '\nsource /etc/herdr-ssh.sh\n' >> /home/exedev/.bashrc
+
 COPY init /usr/local/bin/init
 COPY exe-setup.service shelley.service shelley.socket /etc/systemd/system/
 COPY licenses/ /usr/share/licenses/ubi-agent/
