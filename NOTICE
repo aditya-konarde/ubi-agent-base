@@ -1,0 +1,7 @@
+The custom build recipe is licensed under Apache-2.0. Bundled components retain their own licenses.
+UBI: Red Hat UBI EULA, included in licenses/ubi.
+exe.dev integration: adapted from boldsoftware/exeuntu, Apache-2.0.
+Herdr: herdrdev/herdr, Apache-2.0.
+uv: astral-sh/uv, MIT or Apache-2.0.
+ripgrep: BurntSushi/ripgrep, MIT or Unlicense.
+RPM package licenses remain in the installed system.

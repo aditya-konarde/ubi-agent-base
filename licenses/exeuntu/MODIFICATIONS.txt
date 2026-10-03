@@ -1,0 +1,4 @@
+The exe-setup.service, shelley.service, and shelley.socket definitions were copied
+without modifications from https://github.com/boldsoftware/exeuntu on 2026-10-03.
+The init wrapper was adapted: Docker-specific sysctl and remount operations were
+removed and systemd starts with --show-status=true.
