@@ -47,7 +47,7 @@ Use `python3.12` explicitly in noninteractive SSH commands: exe.dev's command PA
 
 Journald persistent storage is capped at 64 MiB. exe.dev disk allocation is separate from the image footprint. Stop active work and run `sync` before a control-plane restart; Herdr keeps terminals through client disconnects, but live processes do not survive a VM reboot.
 
-Existing machines are not updated when `latest` changes. Create a new machine to use a newly published image. For reproducible provisioning, use a published build tag or image digest.
+exe.dev may reuse a cached image for a mutable tag such as `latest`. To guarantee a new build, provision using its unique `sha-...-run-...` tag from GHCR. Existing machines are not updated when `latest` changes. Create a new machine to use a newly published image. For reproducible provisioning, use a published build tag or image digest.
 
 ## Licenses
 
